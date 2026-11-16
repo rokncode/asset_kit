@@ -1,0 +1,18 @@
+# Dart
+.dart_tool/
+build/
+# A published package does not commit its lockfile; CI resolves both the
+# lowest (downgrade) and newest (upgrade) dependency versions.
+pubspec.lock
+coverage/
+
+# asset_kit's own cache and backups (also inside fixture copies)
+.asset_kit/
+*.asset_kit.tmp
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+*.iml
+*.swp

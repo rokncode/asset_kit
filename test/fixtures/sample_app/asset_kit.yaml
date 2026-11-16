@@ -1,0 +1,17 @@
+source: assets_src
+output: assets
+source_scale: 3
+scales: [1, 2, 3]
+images:
+  format: webp
+  quality: 80
+  lossless_for: ["*.icon.png"]
+codegen:
+  output: lib/gen/assets.gen.dart
+  class_name: Assets
+  names:
+    images/شعار.webp: logoAr
+unused:
+  scan_dirs: [lib]
+  ignore: []
+  extra_scan_files: ["lib/l10n/*.arb"]

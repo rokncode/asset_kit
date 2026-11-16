@@ -1,0 +1,28 @@
+name: asset_kit
+description: >-
+  A CLI that manages Flutter assets: optimizes images into resolution-aware
+  variants, generates type-safe Dart constants, and finds unused assets.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.11.0
+
+executables:
+  asset_kit: asset_kit
+dependencies:
+  args: ^2.7.0
+  crypto: ^3.0.8
+  dart_style: ^3.0.0
+  glob: ^2.2.0
+  image: ^4.13.1
+  path: ^1.9.1
+  pub_semver: ^2.2.1
+  watcher: ^1.2.1
+  xml: ">=7.0.1 <8.0.0"
+  yaml: ^3.1.4
+  yaml_edit: ^2.2.4
+dev_dependencies:
+  lints: ^6.1.0
+  test: ^1.33.0
+  vector_graphics_compiler: ^1.1.0

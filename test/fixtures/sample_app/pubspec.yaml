@@ -1,0 +1,31 @@
+name: sample_app
+description: Fixture Flutter project for asset_kit tests.
+publish_to: none
+version: 1.0.0
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+
+# The flutter section is managed partly by asset_kit.
+flutter:
+  uses-material-design: true # keep this comment
+  assets:
+    - assets/images/          # images
+    - assets/images/2.0x/     # stale: scale folders are not needed
+    - assets/old_stuff/       # stale: folder no longer exists
+    - shaders/                # outside the assets folder: untouched
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo-Regular.ttf
+        - asset: assets/fonts/Cairo-Bold.ttf
+          weight: 700
