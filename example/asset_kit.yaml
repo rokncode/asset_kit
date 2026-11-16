@@ -1,0 +1,32 @@
+# Example asset_kit.yaml for a Flutter app with Arabic and English content.
+source: assets_src
+output: assets
+
+source_scale: 3
+folder_scales:
+  images/illustrations: 4   # designers export these at 4x
+scales: [1, 2, 3]
+
+images:
+  format: webp
+  quality: 80
+  lossless_for: ["*.icon.png"]
+
+svg:
+  optimize: true
+
+fonts:
+  register_in_pubspec: true
+  overrides:
+    fonts/Tajawal-Hairline.ttf: { family: Tajawal, weight: 100 }
+
+codegen:
+  output: lib/gen/assets.gen.dart
+  class_name: Assets
+  names:
+    images/شعار.webp: logoAr
+
+unused:
+  scan_dirs: [lib]
+  ignore: ["assets/images/seasonal/*"]
+  extra_scan_files: ["lib/l10n/*.arb"]

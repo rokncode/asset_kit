@@ -1,9 +1,17 @@
 name: asset_kit
 description: >-
-  A CLI that manages Flutter assets: optimizes images into resolution-aware
-  variants, generates type-safe Dart constants, and finds unused assets.
+  CLI that manages Flutter assets: converts images to WebP with 2x/3x
+  variants, generates type-safe constants, syncs pubspec.yaml and finds
+  unused assets.
 version: 0.1.0
-publish_to: none
+repository: https://github.com/rokncode/asset_kit
+issue_tracker: https://github.com/rokncode/asset_kit/issues
+topics:
+  - flutter
+  - assets
+  - codegen
+  - images
+  - cli
 
 environment:
   sdk: ^3.11.0
