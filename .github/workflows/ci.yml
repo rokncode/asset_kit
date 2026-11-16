@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: Dart ${{ matrix.sdk }} (${{ matrix.deps }} dependencies)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # The minimum SDK in pubspec.yaml, with the lowest allowed version
+          # of every dependency: proves the declared constraints really work.
+          - sdk: "3.11.0"
+            deps: lowest
+            resolve: dart pub downgrade
+          # Current stable with the newest allowed versions.
+          - sdk: stable
+            deps: newest
+            resolve: dart pub upgrade
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ matrix.sdk }}
+
+      - name: Install cwebp (libwebp)
+        run: sudo apt-get update && sudo apt-get install -y webp && cwebp -version
+
+      - name: Resolve dependencies
+        run: ${{ matrix.resolve }}
+
+      - name: Check formatting
+        if: matrix.deps == 'newest'
+        run: dart format --output=none --set-exit-if-changed lib bin test
+
+      - name: Analyze
+        # Lint sets differ between lints versions; enforce them on the newest.
+        run: dart analyze ${{ matrix.deps == 'newest' && '--fatal-infos' || '' }}
+
+      - name: Test
+        run: dart test --reporter expanded
+
+      - name: Publish dry run
+        if: matrix.deps == 'newest'
+        run: dart pub publish --dry-run
